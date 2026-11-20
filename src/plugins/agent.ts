@@ -81,7 +81,8 @@ const q = {
     GROUP BY session_id ORDER BY last_at DESC`),
 }
 
-const agentDir = () => vars.get('AGENT_DIR') || path.join(os.homedir(), 'Pritam', 'brag-plugin-decode')
+/** Folder .agent works in: AGENT_DIR from .env (no default, so it never guesses a path). */
+const agentDir = () => vars.get('AGENT_DIR')
 /** Max job runtime; 0 (the default) means no limit. */
 const timeoutMs = () => vars.int('AGENT_TIMEOUT_MIN', 0) * 60_000
 
@@ -446,6 +447,7 @@ command(
  * ongoing conversation (--resume) unless `fresh`.
  */
 async function startTurn(msg: Message, task: string, opts: { fresh: boolean; quotedIsAgent: boolean; session?: string }) {
+  if (!agentDir()) return msg.reply('_Set AGENT_DIR in .env to the folder .agent should work in, then restart the bot._')
   if (!existsSync(agentDir())) return msg.reply(`_AGENT_DIR not found: ${agentDir()}_`)
 
   // which conversation to continue: the one the user replied to, else the chat's current one

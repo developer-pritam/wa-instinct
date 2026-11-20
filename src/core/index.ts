@@ -1,0 +1,11 @@
+/** Everything a plugin needs, in one import: `import { command, on, ... } from '../core/index.js'` */
+export { command, on, commands, findCommand, type Command, type Context, type Category, type GroupUpdate } from './registry.js'
+export { Message, Quoted, BaseMessage, type Sendable, type SendOptions, type MessageType } from './message.js'
+export { config, VAR_DEFAULTS, TMP_DIR, ROOT_DIR, DATA_DIR } from '../config.js'
+export { db, vars, sudo, chatSettings, warns, filters, msgStats, messageStore, stickerCommands, schedules, type Schedule, type MsgStat } from './db.js'
+export { logger } from './logger.js'
+export * as jid from './jid.js'
+export * as media from './media.js'
+export * from './text.js'
+export { getGroupMetadata, invalidateGroup } from './groups.js'
+export { registerScheduleRunner, cronMatches } from './scheduler.js'

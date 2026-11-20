@@ -1,0 +1,22 @@
+{
+  "watch": [
+    "src",
+    ".env",
+    ".restart.json"
+  ],
+  "ext": "ts,json,env",
+  "ignore": [
+    "data/**",
+    "tmp/**",
+    "auth/**",
+    "assets/**",
+    "bin/**",
+    "node_modules/**"
+  ],
+  "exec": "\"${WA_NODE:-node}\" node_modules/tsx/dist/cli.mjs src/index.ts",
+  "delay": 2000,
+  "signal": "SIGTERM",
+  "events": {
+    "crash": "[ -f .shutdown ] || (sleep 10 && touch .restart.json)"
+  }
+}

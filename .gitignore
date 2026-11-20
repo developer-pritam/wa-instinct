@@ -1,0 +1,30 @@
+# dependencies / build output
+node_modules/
+dist/
+
+# secrets (keep only the example)
+.env
+.env.*
+!.env.example
+
+# WhatsApp login session: never commit
+auth/
+
+# runtime data: message database, agent job outputs (videos, logs), downloads
+data/
+tmp/
+*.db
+*.db-wal
+*.db-shm
+
+# downloaded binary (39 MB): get it with the command in README
+bin/yt-dlp
+
+# files the bot writes while running
+.restart.json
+.shutdown
+
+# logs and stray files
+*.log
+.uuid
+.DS_Store

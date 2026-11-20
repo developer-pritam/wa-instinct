@@ -4,8 +4,9 @@
 const path = require('node:path')
 const os = require('node:os')
 
-// Baileys 7 needs Node 22; pm2 itself may run on an older system node, so pin it here.
-const NODE_BIN = "/usr/bin" // new VM: system Node 24
+// Baileys 7 needs Node 22+. Uses the Node that pm2 runs on; if pm2 runs on an older
+// Node, set NODE_BIN to the folder of a Node 22+ binary when starting pm2.
+const NODE_BIN = process.env.NODE_BIN || path.dirname(process.execPath)
 
 module.exports = {
   apps: [
